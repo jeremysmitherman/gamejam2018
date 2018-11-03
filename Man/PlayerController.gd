@@ -10,7 +10,11 @@ var cur_jump_frames = 0
 var is_jumping = false
 var is_stationary_firing = false
 var stationary_firing_frames = 0
-var stationary_firing_frames_max = 20
+var stationary_firing_frames_max = 70
+
+var fire_delay_frames = 20
+var cur_fire_delay_frames = 0
+
 var velocity = Vector2()
 var inputs = Vector2()
 var bullet = load("res://Man/bullet.tscn")
@@ -20,6 +24,7 @@ func _ready():
 	animation = get_node('../AnimatedSprite')
 
 func _process(delta):
+	cur_fire_delay_frames += 1
 	inputs.x = 0
 	inputs.y = 0
 	if Input.is_action_pressed("ui_right"):
@@ -38,8 +43,9 @@ func _process(delta):
 		if cur_jump_frames > jump_frames:
 			is_jumping = false
 	
-	if Input.is_action_just_pressed("fire"):
-		if inputs.x == 0:
+	if Input.is_action_just_pressed("fire") and cur_fire_delay_frames > fire_delay_frames:
+		cur_fire_delay_frames = 0
+		if inputs.x == 0 and mob.is_on_floor():
 			stationary_firing_frames = 0
 			is_stationary_firing = true
 			animation.play("fire")
@@ -55,6 +61,7 @@ func _process(delta):
 	
 	if inputs.x != 0:
 		animation.play("run")
+		is_stationary_firing = false
 	elif is_stationary_firing and stationary_firing_frames < stationary_firing_frames_max:
 		stationary_firing_frames += 1
 	else:
