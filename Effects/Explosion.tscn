@@ -17,7 +17,7 @@ animations = [ {
 "speed": 24.0
 } ]
 
-[node name="Explosion" type="AnimatedSprite" index="0"]
+[node name="Explosion" type="AnimatedSprite"]
 
 frames = SubResource( 1 )
 animation = "default"

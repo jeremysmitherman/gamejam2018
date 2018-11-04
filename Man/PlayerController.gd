@@ -49,6 +49,7 @@ var bullet = load("res://Man/bullet.tscn")
 func _ready():
 	mob = get_owner()
 	animation = get_node('../AnimatedSprite')
+	get_owner().add_to_group('player')
 
 func _process(delta):
 	# Increment fire delay and get inputs
