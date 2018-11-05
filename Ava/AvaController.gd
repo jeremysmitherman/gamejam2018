@@ -43,7 +43,6 @@ func _process(delta):
 	else:
 		sprite.set_flip_h(false)
 
-	print(mob.global_position.y - target.global_position.y)
 	if can_attack and abs(mob.global_position.y - target.global_position.y) < 20:
 		can_attack = false
 		animation.play("Fire")

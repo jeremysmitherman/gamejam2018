@@ -82,7 +82,7 @@ tracks/0/keys = {
 "values": [ "default" ]
 }
 
-[node name="Ava" type="KinematicBody2D" index="0"]
+[node name="Ava" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
