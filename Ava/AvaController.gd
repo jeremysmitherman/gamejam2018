@@ -1,10 +1,10 @@
 extends Node
 
-var hp = 10
+var hp = 100
 var mob
 var explosion = load("res://Effects/Explosion.tscn")
 var beam = load("res://Ava/Beam.tscn")
-var iframes = 6
+var iframes = 12
 var cur_iframes = 6
 var flash = false
 var target
@@ -46,17 +46,6 @@ func _process(delta):
 	if can_attack and abs(mob.global_position.y - target.global_position.y) < 20:
 		can_attack = false
 		animation.play("Fire")
-
-	if cur_iframes < iframes:
-		if flash == false:
-			sprite.modulate = Color(10, 10, 10, .2)
-			flash = true
-		else:
-			flash = false
-			sprite.modulate = Color(1, 1, 1, 1)
-		cur_iframes += 1
-	else:
-		sprite.modulate = Color(1, 1, 1, 1)
 	if hp <= 0:
 		var expl = explosion.instance()
 		expl.global_position = mob.global_position
@@ -64,6 +53,17 @@ func _process(delta):
 		get_owner().queue_free()
 
 func _physics_process(delta):
+	if cur_iframes < iframes:
+		if flash == false:
+			sprite.modulate = Color(10, 10, 10, .1)
+			flash = true
+		else:
+			flash = false
+			sprite.modulate = Color(1, 1, 1, 1)
+		cur_iframes += 1
+	else:
+		sprite.modulate = Color(1, 1, 1, 1)
+		
 	if is_patrolling:
 		velocity.y += 20
 		velocity.x = patrol_speed *  patrol_direction

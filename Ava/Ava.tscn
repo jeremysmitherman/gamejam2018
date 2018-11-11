@@ -11,10 +11,11 @@
 [ext_resource path="res://Ava/ava_fire_6.png" type="Texture" id=9]
 [ext_resource path="res://Ava/AvaController.gd" type="Script" id=10]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="CapsuleShape2D" id=5]
 
 custom_solver_bias = 0.0
-extents = Vector2( 12.163, 15.3707 )
+radius = 7.90013
+height = 14.5716
 
 [sub_resource type="SpriteFrames" id=2]
 
@@ -92,16 +93,19 @@ script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 
-position = Vector2( -3.66383, -0.235023 )
-shape = SubResource( 1 )
+position = Vector2( -3.66383, 0.702811 )
+shape = SubResource( 5 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="1"]
 
-position = Vector2( -0.115982, 0 )
+position = Vector2( 0.0545349, 0.596805 )
 frames = SubResource( 2 )
 animation = "fire"
 frame = 19
 playing = true
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="AvaController" type="Node" parent="." index="2"]
 

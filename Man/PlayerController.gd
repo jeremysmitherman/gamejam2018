@@ -31,10 +31,10 @@ var is_stationary_firing = false
 
 # How long we've been in and how many frames we'll stay in the stationary firing animation
 var stationary_firing_frames = 0
-var stationary_firing_frames_max = 70
+var stationary_firing_frames_max = 120
 
 # How many frames must pass before we can fire again, and how many frames it's been since we've fired.
-var fire_delay_frames = 20
+var fire_delay_frames = 24
 var cur_fire_delay_frames = 0
 
 # Overall velocity of the character
@@ -52,14 +52,29 @@ func _ready():
 	get_owner().add_to_group('player')
 
 func _process(delta):
-	# Increment fire delay and get inputs
-	cur_fire_delay_frames += 1
 	inputs.x = 0
 	inputs.y = 0
 	if Input.is_action_pressed("ui_right"):
 		inputs.x += speed
 	if Input.is_action_pressed("ui_left"):
 		inputs.x -= speed
+
+	# Flip the sprite based on the direction we're moving
+	if inputs.x < 0:
+		animation.set_flip_h(true)
+	if inputs.x > 0:
+		animation.set_flip_h(false)
+		
+	# If we aren't on the floor, play the appropriate animation for our vertical speed
+	if !mob.is_on_floor():
+		if velocity.y > 40:
+			animation.play("fall")
+		else:
+			animation.play("jump")
+
+func _physics_process(delta):
+	# Increment fire delay and get inputs
+	cur_fire_delay_frames += 1
 	
 	# Set is_jumping if we pressed jump this frame and we're on the floor
 	# Reset jumping frames
@@ -110,21 +125,7 @@ func _process(delta):
 		stationary_firing_frames += 1
 	else:
 		animation.play("default")
-
-	# Flip the sprite based on the direction we're moving
-	if inputs.x < 0:
-		animation.set_flip_h(true)
-	if inputs.x > 0:
-		animation.set_flip_h(false)
-		
-	# If we aren't on the floor, play the appropriate animation for our vertical speed
-	if !mob.is_on_floor():
-		if velocity.y > 40:
-			animation.play("fall")
-		else:
-			animation.play("jump")
-
-func _physics_process(delta):
+	
 	velocity.x = 0
 	# If we're jumping, increase our vertical speed (negative y) based on a decaying value so we get a nice burst 
 	# at the start of the jump that decays until we hit jump_frames, where is_jumping will be forcibly set to false, 
