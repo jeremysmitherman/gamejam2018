@@ -381,4 +381,28 @@ bounce = 0.0
 position = Vector2( 0.158104, -1.97522 )
 shape = SubResource( 2 )
 
+[node name="bgwall" type="Sprite" parent="." index="15"]
+
+position = Vector2( 46.4134, 16.773 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 32, 16, 16 )
+_sections_unfolded = [ "Region" ]
+
+[node name="bgwall2" type="Sprite" parent="." index="16"]
+
+position = Vector2( 28.8275, 16.773 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 16, 32, 16, 16 )
+_sections_unfolded = [ "Region" ]
+
+[node name="bgwall3" type="Sprite" parent="." index="17"]
+
+position = Vector2( 63.864, 16.773 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 32, 32, 16, 16 )
+_sections_unfolded = [ "Region" ]
+
 

@@ -1,6 +1,7 @@
 extends Area2D
 
 var direction = 1
+var damage = 40
 var velocity = Vector2()
 var speed = 16000
 var sprite

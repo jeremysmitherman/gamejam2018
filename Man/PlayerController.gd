@@ -1,5 +1,8 @@
 extends Node
 
+# Let out GUI know to update
+signal stats_changed
+
 # Reference to the parent kinematic body, set in _ready
 var mob
 
@@ -53,7 +56,7 @@ func _ready():
 	mob.connect("hit_taken", self, "take_hit")
 
 func take_hit(initiator):
-	print(initiator.name)
+	emit_signal("stats_changed", initiator.damage)
 
 func _process(delta):
 	inputs.x = 0

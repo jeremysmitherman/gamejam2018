@@ -42,4 +42,5 @@ fire=[ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_na
 [rendering]
 
 quality/2d/use_pixel_snap=true
+environment/default_clear_color=Color( 0.105469, 0.105469, 0.105469, 1 )
 environment/default_environment="res://default_env.tres"
