@@ -1,6 +1,6 @@
 extends Node
 
-var hp = 100
+var hp = 50
 var mob
 var explosion = load("res://Effects/Explosion.tscn")
 var beam = load("res://Ava/Beam.tscn")

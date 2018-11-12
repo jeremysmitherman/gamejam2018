@@ -50,6 +50,10 @@ func _ready():
 	mob = get_owner()
 	animation = get_node('../AnimatedSprite')
 	get_owner().add_to_group('player')
+	mob.connect("hit_taken", self, "take_hit")
+
+func take_hit(initiator):
+	print(initiator.name)
 
 func _process(delta):
 	inputs.x = 0

@@ -49,7 +49,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angle", "Color", "Emission Shape", "Initial Velocity", "Spread" ]
 
-[node name="Area2D" type="Area2D" index="0"]
+[node name="Area2D" type="Area2D"]
 
 position = Vector2( -0.572838, 0.295555 )
 input_pickable = true
@@ -60,6 +60,7 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
+_sections_unfolded = [ "Collision" ]
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 

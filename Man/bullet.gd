@@ -4,8 +4,10 @@ var direction = 1
 var damage = 5
 var speed = 30000
 var velocity = Vector2()
+var killTimer = Timer.new()
 
 func _ready():
+	add_to_group("bullets")
 	connect('body_entered', self, '_on_body_entered')
 
 func _physics_process(delta):
