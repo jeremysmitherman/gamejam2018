@@ -15,7 +15,7 @@ func _process(delta):
 			player = players[0]
 			player.get_node("PlayerController").connect("stats_changed", self, "_on_stats_change")
 	
-	
+	life = clamp(life, 0, 100)
 	texture_progress.value = life_display
 
 func _physics_process(delta):

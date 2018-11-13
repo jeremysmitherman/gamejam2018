@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Tilesets/outside.tres" type="TileSet" id=1]
 [ext_resource path="res://Ava/Ava.tscn" type="PackedScene" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://Tilesets/Forest.png" type="Texture" id=7]
 [ext_resource path="res://Destructible.gd" type="Script" id=8]
 [ext_resource path="res://Tilesets/Ground.png" type="Texture" id=9]
+[ext_resource path="res://Effects/Health.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Ship.gd" type="Script" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -19,6 +21,11 @@ extents = Vector2( 16.508, 24.1975 )
 
 custom_solver_bias = 0.0
 extents = Vector2( 8.83923, 25.993 )
+
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 55.9388, 62.8033 )
 
 [node name="Node" type="Node"]
 
@@ -103,7 +110,7 @@ _sections_unfolded = [ "Offset", "Region", "Transform" ]
 "player",
 ] instance=ExtResource( 5 )]
 
-position = Vector2( 40.221, -42.5426 )
+position = Vector2( 66.5731, -45.1778 )
 
 [node name="TileMap" type="TileMap" parent="." index="7"]
 
@@ -128,7 +135,6 @@ _sections_unfolded = [ "Cell", "Collision", "Transform" ]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." index="8"]
 
-editor/display_folded = true
 layer = -1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -167,7 +173,7 @@ _sections_unfolded = [ "Motion" ]
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2" index="0"]
 
-position = Vector2( 224, -80 )
+position = Vector2( 225.054, -81.0541 )
 texture = ExtResource( 7 )
 
 [node name="DestructibleTiles" type="Node" parent="." index="9"]
@@ -256,5 +262,26 @@ _sections_unfolded = [ "Collision" ]
 
 position = Vector2( -23.4266, 6.11888 )
 shape = SubResource( 2 )
+
+[node name="HealthPickup" parent="." index="10" instance=ExtResource( 10 )]
+
+position = Vector2( 229.94, 26.1466 )
+
+[node name="Area2D" type="Area2D" parent="." index="11"]
+
+position = Vector2( 0.790558, 0.790565 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+
+position = Vector2( -24.771, -31.0955 )
+shape = SubResource( 3 )
 
 
